@@ -9,7 +9,7 @@ require "resty.core"
 local ini = require("resty.ini")
 local stringUtil = require("relay.utils.strings")
 
-local configPath = '/path/to/lua-resty-influxdb-relay/relay/conf.ini'
+local configPath = '/path/to/lua-resty-influxdb-relay/lib/relay/conf.ini'
 local relayURIKey = 'relay:uri'
 local relayWriteURIKey = 'relay:write:uri'
 local relayActionKey = 'relay:action'
