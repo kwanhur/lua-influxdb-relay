@@ -18,6 +18,9 @@ This library is still under early development and experimental.
 Synopsis
 ========
 ```lua
+    # --------- copy relay configuration file -----------
+    cp -av /path/to/lua-resty-influxdb-relay/lib/relay/lua-resty-influxdb-relay.conf.demo /tmp/lua-resty-influxdb-relay.conf
+
     # --------- relay config begin --------------
     	lua_code_cache on;
     	lua_package_path "/path/to/openresty/lualib/?.lua;/path/to/lua-resty-influxdb-relay/lib/?.lua;;";

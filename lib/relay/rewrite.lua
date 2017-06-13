@@ -1,9 +1,6 @@
---
--- Created by IntelliJ IDEA.
--- User: kwanhur
--- Date: 2016/11/11
--- Time: 下午7:36
--- To change this template use File | Settings | File Templates.
+-- Copyright (C) by Kwanhur Huang
+
+
 
 local logUtils = require('relay.utils.utils')
 local doWarnLog = logUtils.dowarnlog

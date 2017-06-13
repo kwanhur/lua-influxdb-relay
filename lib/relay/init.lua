@@ -1,15 +1,12 @@
---
--- Created by IntelliJ IDEA.
--- User: kwanhur
--- Date: 2016/11/11
--- Time: 下午7:35
--- To change this template use File | Settings | File Templates.
---
+-- Copyright (C) by Kwanhur Huang
+
+
+
 require "resty.core"
 local ini = require("resty.ini")
 local stringUtil = require("relay.utils.strings")
 
-local configPath = '/path/to/lua-resty-influxdb-relay/lib/relay/conf.ini'
+local configPath = '/tmp/lua-resty-influxdb-relay.conf'
 local relayURIKey = 'relay:uri'
 local relayWriteURIKey = 'relay:write:uri'
 local relayActionKey = 'relay:action'
