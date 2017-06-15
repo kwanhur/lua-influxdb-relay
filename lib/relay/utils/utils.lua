@@ -1,4 +1,7 @@
-local modulename = "apusUtilUtils"
+-- Copyright (C) by Kwanhur Huang
+
+
+local modulename = "utilUtils"
 local _M = {}
 _M._VERSION = '0.0.1'
 

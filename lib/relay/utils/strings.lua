@@ -1,12 +1,8 @@
---
--- Created by IntelliJ IDEA.
--- User: kwanhur
--- Date: 16/4/13
--- Time: 上午1:24
--- To change this template use File | Settings | File Templates.
---
+-- Copyright (C) by Kwanhur Huang
 
-local modulename = "apusUtilStrings"
+
+
+local modulename = "utilStrings"
 local _M = {}
 _M._VERSION = '0.0.1'
 
