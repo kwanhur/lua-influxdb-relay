@@ -1,4 +1,8 @@
-local modulename = 'relayErrorHandler'
+-- Copyright (C) by Kwanhur Huang
+
+
+
+local modulename = 'errorHandler'
 
 local _M = { _VERSION = '0.01' }
 

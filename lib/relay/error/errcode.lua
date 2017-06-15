@@ -1,4 +1,8 @@
-local modulename = 'relayErrorInfo'
+-- Copyright (C) by Kwanhur Huang
+
+
+
+local modulename = 'errorInfo'
 local _M = {}
 
 _M._VERSION = '0.0.1'
