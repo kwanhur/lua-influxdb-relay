@@ -10,7 +10,7 @@ local configPath = '/tmp/lua-resty-influxdb-relay.conf'
 local relayURIKey = 'relay:uri'
 local relayWriteURIKey = 'relay:write:uri'
 local relayActionKey = 'relay:action'
-local relayShdict = ngx.shared.apus_relay
+local relayShdict = ngx.shared.relay
 
 local config = ini.parse_file(configPath)
 local relayConfig = config.relay

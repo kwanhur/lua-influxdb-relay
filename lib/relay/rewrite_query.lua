@@ -9,7 +9,7 @@ local ERRORINFO = require('relay.error.errcode').info
 local handler = require('relay.error.handler').handler
 local stringUtil = require("relay.utils.strings")
 
-local relayShdict = ngx.shared.apus_relay
+local relayShdict = ngx.shared.relay
 local relayURIKey = 'relay:uri'
 local relayURI = relayShdict:get(relayURIKey)
 ngx.var.backend_uri_args = ngx.var.args
