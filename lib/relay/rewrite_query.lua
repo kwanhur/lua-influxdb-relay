@@ -2,27 +2,28 @@
 
 
 
-local logUtils = require('relay.utils.utils')
-local doWarnLog = logUtils.dowarnlog
-local doErrorLog = logUtils.dolog
-local ERRORINFO = require('relay.error.errcode').info
+local wrap_log = require('relay.utils.utils').wrap_log
 local handler = require('relay.error.handler').handler
 local stringUtil = require("relay.utils.strings")
 
 local relayShdict = ngx.shared.relay
 local relayURIKey = 'relay:uri'
 local relayURI = relayShdict:get(relayURIKey)
-ngx.var.backend_uri_args = ngx.var.args
 if not relayURI then
     return
 end
+
 local relayURITbl = stringUtil.splitString(relayURI, ',')
 if not relayURITbl or table.maxn(relayURITbl) == 0 then
     return
 end
+
 if ngx.var.args == "" then
     return
 end
+
+ngx.var.backend_uri_args = ngx.var.args
+
 local relay = false
 local args = ngx.var.args
 local relayActionKey = 'relay:action'
@@ -62,8 +63,7 @@ local pfunc = function()
             body = resp.body
         end
         if respStatus >= ngx.HTTP_SPECIAL_RESPONSE then
-            local err = 'server response code -------->>>> ' .. tostring(respStatus)
-            doWarnLog(ERRORINFO.HTTP_RESPONSE_STATUS_ERROR, err)
+            ngx.log(ngx.WARN, 'server response code -------->>>> ' .. tostring(respStatus))
         end
     end
 
@@ -77,5 +77,5 @@ if not status then
     local errinfo = info[1]
     local errstack = info[2]
     local err, desc = errinfo[1], errinfo[2]
-    doErrorLog(err, desc, nil, errstack)
+    ngx.log(ngx.ERR, wrap_log(err, desc, nil, errstack))
 end

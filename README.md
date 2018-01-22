@@ -19,7 +19,7 @@ Synopsis
 ========
 ```lua
     # --------- copy relay configuration file -----------
-    cp -av /path/to/lua-resty-influxdb-relay/lib/relay/lua-resty-influxdb-relay.conf.demo /tmp/lua-resty-influxdb-relay.conf
+    cp -av /path/to/lua-resty-influxdb-relay/lib/relay/lua-resty-influxdb-relay.ini.demo /tmp/lua-resty-influxdb-relay.ini
 
     # --------- relay config begin --------------
     	lua_code_cache on;
@@ -44,10 +44,7 @@ Synopsis
     }
     
     server {
-      server_name influxdb-relay;
-      listen 80 backlog = 16384;
-      default_type text/plain;
-      access_log logs/influxdb-relay.access main;
+    
       log_subrequest on;
     
       location = /write {
@@ -62,26 +59,33 @@ Synopsis
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Connection "";
         proxy_http_version 1.1;
+        
         rewrite_by_lua_file '/path/to/lua-resty-influxdb-relay/lib/relay/rewrite_query.lua';
       }
     
       location = /relay_master {
+        internal;
+        
         proxy_pass http://backend_master;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Connection "";
         proxy_http_version 1.1;
+        
         rewrite_by_lua_file '/path/to/lua-resty-influxdb-relay/lib/relay/rewrite_relay.lua';
       }
     
       location = /relay_slave {
+        internal;
+      
         proxy_pass http://backend_slave;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header Connection "";
         proxy_http_version 1.1;
+        
         rewrite_by_lua_file '/path/to/lua-resty-influxdb-relay/lib/relay/rewrite_relay.lua';
       }
     
@@ -114,12 +118,8 @@ Copyright (C) 2016, by kwanhur <huang_hua2012@163.com>, VIPS Inc.
 
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+Unless required by applicable law or agreed to in writing, software distributed under the License is 
+distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+See the License for the specific language governing permissions and limitations under the License.
 
 [Back to TOC](#table-of-contents)

@@ -5,6 +5,7 @@
 local modulename = "utilStrings"
 local _M = {}
 _M._VERSION = '0.0.1'
+_M._NAME = modulename
 
 _M.splitString = function(content, sep)
     if sep == nil then
@@ -22,10 +23,5 @@ end
 _M.startswith = function(content, startStr)
     return string.sub(content, 1, string.len(startStr)) == startStr
 end
-
-_M.endswith = function(content, endStr)
-    return endStr == '' or string.sub(content, -string.len(endStr)) == endStr
-end
-
 
 return _M
