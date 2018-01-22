@@ -25,7 +25,6 @@ Synopsis
     	lua_code_cache on;
     	lua_package_path "/path/to/openresty/lualib/?.lua;/path/to/lua-resty-influxdb-relay/lib/?.lua;;";
     	lua_package_cpath "/path/to/openresty/lualib/?.so;;";
-    	lua_need_request_body on;
     	lua_shared_dict relay 1m;
     	init_by_lua_file '/path/to/lua-resty-influxdb-relay/lib/relay/init.lua';
     # --------- relay config end ----------------
