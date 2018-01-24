@@ -6,7 +6,7 @@ local _M = {}
 _M._VERSION = '0.0.1'
 _M._NAME = modulename
 
-local getlog = function(info, desc, data, errstack)
+local wrap_log = function(info, desc, data, errstack)
     local errlog = ''
     local code, err = info[1], info[2]
     local errcode = code
@@ -22,11 +22,5 @@ local getlog = function(info, desc, data, errstack)
     end
     return errlog
 end
-
-_M.wrap_log = function(info, desc, data, errstack)
-    local errlog = getlog(info, desc, data, errstack)
-    ngx.log(ngx.ERR, errlog)
-end
-
 
 return _M
