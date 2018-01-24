@@ -1,4 +1,4 @@
 [relay]
-relayURI = /relay_master,/relay_slave
+relayURI = /relay1,/relay2
 relayWriteURI = /write
 relayAction = CREATE,ALTER,DROP
